@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TaskList from "./components/TaskList";
 import { Task } from "./types";
-import "./app.css";
+import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
-
-const API_URL = "http://localhost:5000/api/tasks"; 
+import { API_URL } from "./config";
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // Add Task Modal State
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -19,6 +19,7 @@ const App: React.FC = () => {
 
   // Fetch tasks from the API
   useEffect(() => {
+    console.log("API_URL:", API_URL);
     const fetchTasks = async () => {
       try {
         const response = await axios.get(API_URL);
@@ -26,8 +27,20 @@ const App: React.FC = () => {
       } catch (err) {
         setError("Failed to fetch tasks");
       }
+      setLoading(false);
     };
     fetchTasks();
+    // const fetchTasks = async () => {
+    //   try {
+    //     const response = await fetch("https://task-manager-1f3q.onrender.com/api/tasks");
+    //     const data = await response.json();
+    //     console.log("Tasks:", data);
+    //   } catch (error) {
+    //     console.error("Error fetching tasks:", error);
+    //   }
+    // };
+    // fetchTasks();
+    
   }, []);
 
   // Handle Delete Task
@@ -124,13 +137,19 @@ const App: React.FC = () => {
       </div>
 
       {/* Task List */}
+      {loading ? (
+          <p className="text-center text-gray-600">Loading tasks...</p>
+        ) : error ? (
+          <p className="text-red-500">{error}</p>
+        ) :
+        (
       <TaskList
         tasks={filteredTasks}
         onDeleteTask={handleDeleteTask}
         onUpdateTask={handleUpdateTask}
         onToggleComplete={handleToggleComplete}
       />
-
+        )}
       {/* Add Task Modal */}
       {isAddModalOpen && (
         <div className="fixed inset-0 bg-black/30 bg-opacity-50 flex justify-center items-center">

@@ -3,8 +3,8 @@ import { Task } from "../types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit, faTimes } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-
-const API_URL = "http://localhost:5000/api/tasks"; // 
+import { API_URL } from "../config";
+ 
 // Due date color mapping
 // ✅ Function to determine the due date style & auto-update status
 const getDueDateStyle = (task: Task, updateTaskStatus: (taskId: string, status: string) => void) => {
