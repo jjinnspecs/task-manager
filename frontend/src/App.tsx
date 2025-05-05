@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
   // Fetch tasks from the API
   useEffect(() => {
-    console.log("API_URL:", API_URL);
+    // console.log("API_URL:", API_URL);
     const fetchTasks = async () => {
       try {
         const response = await axios.get(API_URL);
@@ -30,16 +30,6 @@ const App: React.FC = () => {
       setLoading(false);
     };
     fetchTasks();
-    // const fetchTasks = async () => {
-    //   try {
-    //     const response = await fetch("https://task-manager-1f3q.onrender.com/api/tasks");
-    //     const data = await response.json();
-    //     console.log("Tasks:", data);
-    //   } catch (error) {
-    //     console.error("Error fetching tasks:", error);
-    //   }
-    // };
-    // fetchTasks();
     
   }, []);
 
@@ -55,7 +45,7 @@ const App: React.FC = () => {
 
   // Handle Update Task
   const handleUpdateTask = async (updatedTask: Task) => {
-    try {
+    try {5
       await axios.put(`${API_URL}/${updatedTask._id}`, updatedTask);
       setTasks(tasks.map((task) => (task._id === updatedTask._id ? updatedTask : task)));
     } catch (err) {
