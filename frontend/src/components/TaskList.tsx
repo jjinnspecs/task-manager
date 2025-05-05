@@ -50,7 +50,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask, onUpdateTask})
       await axios.put(`${API_URL}/${taskId}`, { status: newStatus }); // API call to update task
       onUpdateTask({ _id: taskId, status: newStatus } as Task); // Update local state
     } catch (err) {
-      console.error("Failed to update task status", err);
+      // console.error("Failed to update task status", err);
     }
   };
 
@@ -75,7 +75,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask, onUpdateTask})
         onUpdateTask({ ...updatedTask, status: newStatus }); // Keep all properties intact
       }
     } catch (err) {
-      console.error("Failed to update task status", err);
+      // console.error("Failed to update task status", err);
     }
   };
   

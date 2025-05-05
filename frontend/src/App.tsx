@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
   // Fetch tasks from the API
   useEffect(() => {
-    console.log("API_URL:", API_URL);
+    // console.log("API_URL:", API_URL);
     const fetchTasks = async () => {
       try {
         const response = await axios.get(API_URL);
