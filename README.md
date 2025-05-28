@@ -1,5 +1,5 @@
 📝 Task Manager App (MERN Stack)
-A simple and efficient Task Manager web application built using the MERN stack. Users can add, update, delete, and mark tasks as completed, with automatic handling of overdue tasks.
+A Task Manager web application built using the MERN stack. Users can add, update, delete, and mark tasks as completed, with automatic handling of overdue tasks.
 
 🚀 Features
 - Add new tasks with title, description, and due date
