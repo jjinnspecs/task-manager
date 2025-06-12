@@ -137,19 +137,21 @@ const App: React.FC = () => {
       </div>
 
       {/* Task List */}
-      {loading ? (
-          <p className="text-center text-gray-600">Loading tasks...</p>
-        ) : error ? (
-          <p className="text-red-500">{error}</p>
-        ) :
-        (
-      <TaskList
-        tasks={filteredTasks}
-        onDeleteTask={handleDeleteTask}
-        onUpdateTask={handleUpdateTask}
-        onToggleComplete={handleToggleComplete}
-      />
-        )}
+        {loading ? (
+        <p className="text-center text-gray-600">Loading tasks...</p>
+      ) : error ? (
+        <p className="text-red-500">{error}</p>
+      ) : filteredTasks.length === 0 ? (
+        <p className="text-center text-gray-500 mt-4">No tasks found. Try adding one!</p>
+      ) : (
+        <TaskList
+          tasks={filteredTasks}
+          onDeleteTask={handleDeleteTask}
+          onUpdateTask={handleUpdateTask}
+          onToggleComplete={handleToggleComplete}
+        />
+      )}
+
       {/* Add Task Modal */}
       {isAddModalOpen && (
         <div className="fixed inset-0 bg-black/30 bg-opacity-50 flex justify-center items-center">
